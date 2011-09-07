@@ -10,5 +10,6 @@
     "node": "~v0.4.8"
   },
   "dependencies": {},
-  "devDependencies": {}
+    "devDependencies": {},
+    "main":"lib/module.js"
 }
