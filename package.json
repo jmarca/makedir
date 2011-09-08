@@ -10,6 +10,8 @@
     "node": "~v0.4.8"
   },
   "dependencies": {},
-  "devDependencies": {},
-  "main": "lib/module.js"
+  "devDependencies": {
+      "far": "0.0.3"
+  },
+    "main": "lib/makedir"
 }
