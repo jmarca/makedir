@@ -11,7 +11,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "far": "0.0.3"
+      "far": "0.0.3",
+      "underscore":""
   },
   "main": "lib/makedir"
 }
