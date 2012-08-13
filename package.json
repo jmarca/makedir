@@ -2,7 +2,7 @@
   "author": "James E. Marca <jmarca@translab.its.uci.edu>",
   "name": "makedir",
   "description": "recursively make directories that you need in node.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "url": ""
   },
