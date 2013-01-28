@@ -1,23 +1,23 @@
 {
-    "author": "James E. Marca <jmarca@translab.its.uci.edu>",
-    "name": "makedir",
-    "description": "recursively make directories that you need in node.js",
-    "version": "0.0.8",
-    "repository": {
-        "url": "https://github.com/jmarca/makedir"
-    },
-    "engines": {
-        "node": ">v0.4.8"
-    },
-    "keywords" : [
-        "mkdir",
-        "directory"
-    ],
-    "dependencies": {},
-    "devDependencies": {
-        "far": "0.0.3",
-        "underscore": ""
-    },
-    "main": "lib/makedir",
-    "optionalDependencies": {}
+  "author": "James E. Marca <jmarca@translab.its.uci.edu>",
+  "name": "makedir",
+  "description": "recursively make directories that you need in node.js",
+  "version": "0.0.9",
+  "repository": {
+    "url": "https://github.com/jmarca/makedir"
+  },
+  "engines": {
+    "node": ">v0.4.8"
+  },
+  "keywords": [
+    "mkdir",
+    "directory"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "far": "0.0.3",
+    "underscore": ""
+  },
+  "main": "lib/makedir",
+  "optionalDependencies": {}
 }
