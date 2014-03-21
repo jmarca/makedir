@@ -24,30 +24,36 @@ var paths = [[rootdir , 'foo','bar','baz','bat']
             ,[rootdir , 's','jem','node-data-proxy','public','data','airbasins','monthly','2007']
             ];
 
-after(function(done){
-    var len = path_components.length
-    for(var i = 0; i < path_components.length-1; i++){
-        try{
-            fs.rmdirSync(path_components.slice(0,len - i).join('/'))
-        } catch (x) {
-            // don't care
-        }
-    }
+var relative_paths = [['./relative' , 'foo','bar','baz','bat']
+            ,['./relative' , 'repos','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 'pos','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 'os','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 's','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 'repos','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 'pos','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 'os','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ,['./relative' , 's','jem','node-data-proxy','public','data','airbasins','monthly','2007']
+            ];
 
-    paths.forEach(function(p){
+
+after(function(done){
+    //return done()
+    function rmdir(p){
         var len = p.length
         for(var i = 0; i < p.length-1; i++){
             var rmp=p.slice(0,len - i).join('/')
             try{
                 fs.rmdirSync(rmp)
             } catch (x) {
-                // don't care
+                console.log(x)// don't care
             }
         }
         return null
-
-    });
-
+    }
+    rmdir(path_components)
+    paths.forEach(rmdir)
+    relative_paths.forEach(rmdir)
+    fs.rmdirSync('relative')
 
     return done()
 })
@@ -75,6 +81,33 @@ describe('create directories',function(){
         async.each(paths
                   ,function(p,cb){
                        makedir.makedir(p.join('/'),function(err){
+                           should.not.exist(err)
+                           return cb()
+                       })
+                       return null
+                   }
+                  ,function(e){
+                       should.not.exist(e)
+                       // make sure all of the paths exist
+
+                       paths.forEach(function(p){
+
+                           var stats = fs.statSync(p.join('/'))
+                           stats.isDirectory().should.be.ok
+
+                       })
+                       return done()
+                   });
+        return null
+
+    })
+
+    it('should create many relative path dirs at once',function(done){
+        async.each(relative_paths
+                  ,function(p,cb){
+                       var path = //'./test/'+
+                           p.join('/')
+                       makedir.makedir(path,function(err){
                            should.not.exist(err)
                            return cb()
                        })
