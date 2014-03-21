@@ -8,7 +8,7 @@ use.
 I wrote this one independently of that one, and after comparing the
 code, they do about the same thing.
 
-If you want a widely used, well supported mkdirp, use mkdirp.  On the
+If you want a widely used, well supported mkdirp, use node-mkdirp.  On the
 other hand, this one works too.
 
 The primary use case I wrote this library for was to make RESTful file
@@ -22,32 +22,14 @@ will erroneously try to create a directory that already exists, and
 will crash.  At the time I wrote this way long time ago, the other
 libraries I tested would crash.
 
+# Installation
+
 To install, do
 
     npm install makedir
 
 
-
-To run the tests, such as it is
-
-     npm install -d
-
-Then
-
-     make test
-
-The make test will create a bunch of directories under
-
-    makedirtests/  and
-    /tmp/makedirtests/
-
-
-I have recently gotten more clue on testing, and so I will soon update
-the tests to use mocha.  Until then, you'll have to remove the created
-directories manually.  Sorry about that
-
-    rm makedirtests/ -rf
-    rm /tmp/makedirtests/ -rf
+# Usage
 
 To use, just pass the directory that you want to make.  It will climb
 up the directory tree until it finds something that exist, and then
@@ -65,17 +47,26 @@ example
     };
     makedir.makedir(p,doSomethingToPath(p));
 
+
+
+# Testing
+
+To run the tests, clone the repository, then:
+
+     npm install
+     npm test
+
+or
+
+     mocha test
+
+I just revised my tests to use mocha, and now I actually clean up the
+mess of temp directories.
+
+If you want to prove to yourself that the tests are creating
+directories, go into the tests and delete or comment out the "after"
+bit that clean up the temp directories.
+
 # Copyright
 
-Copyright (c) 2012 James E. Marca, using the MIT licence.
-
-
-
-
-
-
-
-
-
-
-
+Copyright (c) 2012-2014 James E. Marca, using the MIT licence.
