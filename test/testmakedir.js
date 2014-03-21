@@ -152,7 +152,6 @@ describe('create directories',function(){
                                should.not.exist(err)
                                should.exist(stat)
                                var test = (stat.mode & 0777 )
-                               console.log(test)
                                test.should.equal(0744)
                                return callback()
                            })
