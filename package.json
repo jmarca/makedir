@@ -16,7 +16,9 @@
   "dependencies": {},
   "devDependencies": {
     "far": "0.0.3",
-    "underscore": ""
+    "underscore": "",
+    "should": "~3.2.0-beta1",
+    "async": "~0.2.10"
   },
   "main": "lib/makedir",
   "optionalDependencies": {}
