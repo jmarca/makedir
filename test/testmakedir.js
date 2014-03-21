@@ -35,6 +35,14 @@ var relative_paths = [['./relative' , 'foo','bar','baz','bat']
             ,['./relative' , 's','jem','node-data-proxy','public','data','airbasins','monthly','2007']
             ];
 
+var modepaths=[];
+for (var i = 0; i < 5; i++) {
+    var d = ['./modes'];
+    for (var j = 0; i < 5; i++){
+        d.push( Math.floor(Math.random() * Math.pow(16,4)).toString(16) );
+    }
+    modepaths.push(d);
+}
 
 after(function(done){
     //return done()
@@ -45,7 +53,8 @@ after(function(done){
             try{
                 fs.rmdirSync(rmp)
             } catch (x) {
-                console.log(x)// don't care
+                //console.log(x)
+                // don't care
             }
         }
         return null
@@ -53,7 +62,9 @@ after(function(done){
     rmdir(path_components)
     paths.forEach(rmdir)
     relative_paths.forEach(rmdir)
+    modepaths.forEach(rmdir)
     fs.rmdirSync('relative')
+    fs.rmdirSync('modes')
 
     return done()
 })
@@ -129,4 +140,30 @@ describe('create directories',function(){
 
     })
 
+
+    it('should create modes',function(done){
+        async.each(modepaths
+                  ,function(p,callback){
+                       // set up a private function, so when p gets reassigned we don't lose it
+                       var mode_path = p.join('/')
+                       var checkp = function(err){
+                           should.not.exist(err)
+                           fs.stat(mode_path,function(err,stat){
+                               should.not.exist(err)
+                               should.exist(stat)
+                               var test = (stat.mode & 0777 )
+                               console.log(test)
+                               test.should.equal(0744)
+                               return callback()
+                           })
+                           return null
+                       }
+
+                       makedir.makedir(mode_path
+                                      ,0744
+                                      ,checkp)
+                       return null
+                   }
+                  ,done)
+    });
 })
