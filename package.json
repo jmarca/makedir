@@ -13,6 +13,9 @@
     "mkdir",
     "directory"
   ],
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {},
   "devDependencies": {
     "should": "",
