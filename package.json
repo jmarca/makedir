@@ -18,7 +18,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "should": "",
+    "mocha": "^6.0.2",
+    "should": "^13.0.0",
     "async": ""
   },
   "main": "lib/makedir",
